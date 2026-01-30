@@ -3,6 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import CommitmentHealthMetrics from '../../../components/dashboard/CommitmentHealthMetrics';
+import VolatilityExposureMeter from '../../../components/VolatilityExposureMeter/VolatilityExposureMeter';
 
 // Mock data for the commitment
 const MOCK_COMPLIANCE_DATA = [
@@ -13,6 +14,14 @@ const MOCK_COMPLIANCE_DATA = [
     { date: 'Jan 20', complianceScore: 98 },
     { date: 'Jan 25', complianceScore: 100 },
     { date: 'Jan 30', complianceScore: 99 },
+];
+
+const MOCK_VALUE_HISTORY_DATA = [
+    { date: 'Jan 10', currentValue: 45000, initialAmount: 50000 },
+    { date: 'Jan 15', currentValue: 48000, initialAmount: 50000 },
+    { date: 'Jan 20', currentValue: 52000, initialAmount: 50000 },
+    { date: 'Jan 25', currentValue: 51000, initialAmount: 50000 },
+    { date: 'Jan 28', currentValue: 53000, initialAmount: 50000 },
 ];
 
 export default function CommitmentDetailPage({
@@ -49,8 +58,16 @@ export default function CommitmentDetailPage({
                 </header>
 
                 {/* Health Metrics Section */}
-                <section>
-                    <CommitmentHealthMetrics complianceData={MOCK_COMPLIANCE_DATA} />
+                <section className="space-y-6">
+                    <CommitmentHealthMetrics 
+                        complianceData={MOCK_COMPLIANCE_DATA} 
+                        valueHistoryData={MOCK_VALUE_HISTORY_DATA}
+                    />
+                    
+                    <VolatilityExposureMeter 
+                        valuePercent={35}
+                        description="Current exposure to volatile assets based on allocation and market conditions."
+                    />
                 </section>
             </div>
         </main>
