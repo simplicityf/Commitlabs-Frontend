@@ -7,7 +7,6 @@ import MyCommitmentsStats from '@/components/MyCommitmentsStats';
 import MyCommitmentsFilters from '@/components/MyCommitmentsFilters';
 import MyCommitmentsGrid from '@/components/MyCommitmentsGrid';
 import CommitmentEarlyExitModal from '@/components/CommitmentEarlyExitModal/CommitmentEarlyExitModal';
-import styles from './page.module.css';
 import { Commitment, CommitmentStats } from '@/types/commitment';
 
 const mockCommitments: Commitment[] = [
@@ -175,13 +174,13 @@ export default function MyCommitments() {
   }, [earlyExitCommitmentId, closeEarlyExitModal]);
 
   return (
-    <main id="main-content" className={styles.pageWrapper}>
+    <main id="main-content" className="min-h-screen bg-[#0a0a0a] flex flex-col">
       <MyCommitmentsHeader 
         onBack={() => router.push('/')}
         onCreateNew={() => router.push('/create')}
       />
 
-      <div className={styles.container}>
+      <div className="w-full flex-1 px-[5.5rem] py-8 max-[1024px]:px-8 max-[640px]:px-4">
         <MyCommitmentsStats stats={mockStats} />
         
         <MyCommitmentsFilters 
